@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Identifiers_1 = require("./Constants/Identifiers");
+const Installer_1 = require("./Infrastructure/Installer");
+const VideoCatalogService_1 = require("./Services/VideoCatalogService");
+const Asset_1 = require("./Models/Asset");
+let videoRepo = Installer_1.default.get(Identifiers_1.default.IVideoRepository);
+let service = new VideoCatalogService_1.VideoCatalogService(videoRepo);
+console.log("#####Initial Video Movies Library####");
+console.log(service.get());
+console.log("#####Deleting one existing Movie####");
+console.log(service.delete(400));
+console.log("#####Adding one new record####");
+console.log("Added at index : " + service.add(new Asset_1.Asset(600, "Joker", 2020, 109)));
+console.log("#####Editing one of the existing record####");
+console.log(service.edit(400, new Asset_1.Asset(600, "Joker_Edited", 2020, 109)));
+console.log("#####Final Video Movies Library####");
+console.log(service.get());
